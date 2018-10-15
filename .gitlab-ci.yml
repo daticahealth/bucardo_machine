@@ -1,0 +1,10 @@
+image: docker:stable-dind
+
+build:
+  stage: build
+  script:
+    - apk add bash
+    - ./ci-build.sh
+  only:
+    - /^master$/
+    - /^rc-.*$/
