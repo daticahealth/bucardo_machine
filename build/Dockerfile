@@ -15,6 +15,7 @@ RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-k
   && apt-get -y update && apt-get -y install \
     bucardo \
     postgresql-client-10 \
+    mysql-client \
   && rm -rf /var/lib/apt/lists/*
 
 COPY files/pg_hba.conf /etc/postgresql/9.6/main/pg_hba.conf

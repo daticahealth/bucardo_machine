@@ -1,7 +1,7 @@
 
 keepalive () {
   P=$1
-  while sleep 1 ; do
+  while sleep 150 ; do
     if [ $(( $(date +%s) - $(date +%s -r /var/log/console.$P) )) -ge 300 ]; then
       echo -ne "\000"
     fi
