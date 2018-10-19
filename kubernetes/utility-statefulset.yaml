@@ -48,7 +48,7 @@ spec:
         resources: {}
   volumeClaimTemplates:
   - metadata:
-      name: utility-box
+      name: utility-data
     spec:
       accessModes:
         - ReadWriteOnce
