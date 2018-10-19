@@ -3,6 +3,11 @@
 ## Overview
 This project, the Bucardo Machine, was created to help Datica customers migrate from Postgresql running in CPaaS to Postgresql RDS running in a CKS VPC. The Bucardo Machine is meant to be launched into a CKS cluster, but should work in any Kubernetes cluster or Docker instance for testing. Some features, such as the ability to delete the pod and have the new pod continue replication, may not work. This tool is really intended to be used for a limited amount of time and with a fair amount of observation.
 
+## Prerequisites
+* Before you can use this tool to replicate your database you need to have your CPaaS Postgresql source database configured to use SSL. This is something that has to be done by Datica Support. You can open a ticket for this by following [these instructions](https://help.datica.com/hc/en-us/articles/360000244303-How-To-Submit-An-Authenticated-Support-Ticket).
+* If you have not already gotten a VPN connection set up between your CPaaS environment and your CKS VPC, then you should include that in the ticket.
+* You will need to know the proxy IP address and port for your CPaaS Postgresql database.
+
 ## Launching Bucardo machine into your CKS cluster
 
 ##### Create a bucardo namespace
@@ -21,7 +26,7 @@ kubectl --namespace=bucardo-machine create secret generic pgpass --from-file=./p
 ##### Creating the StatefulSet
 You can clone this repo, but all that you really need is the kubernetes/bucardo-statefulset.yaml file. If you don't feel the need to modify that file at all you can simply run the kubectl create command and specify the url of the file.
 ```shell
-kubectl create -f https://gitlab.catalyze.io/k8s-containers/bucardo_machine/raw/master/kubernetes/bucardo-statefulset.yaml
+kubectl create -f https://raw.githubusercontent.com/daticahealth/bucardo_machine/master/kubernetes/bucardo-statefulset.yaml
 ```
 If you think you need to make changes to the file you can save it to your computer, make your changes, then run `kubectl create -f bucardo-statefulset.yaml`
 
